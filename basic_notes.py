@@ -4,15 +4,19 @@ print("Welcome to the Notes App")
 
 # Note class to represent a single note
 class Note: 
-    def __init__(self, title, content, datetime): # Note constructor
+    '''A class to represent a note with title, content, and creation datetime.'''
+    def __init__(self, title, content, created_at): # Note constructor
         self.title = title
         self.content = content
-        self.datetime = datetime
+        self.created_at = created_at
+        self.updated_at = created_at
 
 # NoteManager class to handle note operations            
 class NoteManager:
+    '''A class to manage a collection of notes with create, view, edit, and delete functionalities.'''
     def __init__(self):
         self.notes = []
+        
     @staticmethod
     def get_yes_no_input(prompt):
         '''Helper function to get a yes/no response from the user.'''
@@ -25,18 +29,28 @@ class NoteManager:
             else:
                 print("Please enter 'yes' or 'no'.")
 
-    def create_note(self, title, content): # Create note method
-        note = Note(title, content, datetime.datetime.now()) 
-        self.notes.append(note) # Append note to notes list
+    def create_note(self, title, content): 
+        '''Create a new note with the given title and content.'''
+        if not title: # Check if title is empty
+            print("Title cannot be empty. Note creation failed.")
+            return
+        elif not content: # Check if content is empty
+            print("Content cannot be empty. Note creation failed.")
+            return
+        note = Note(title, content, datetime.datetime.now().strftime("%Y-%m-%d %H:%M")) # Create new note
+        self.notes.append(note) # Add note to the list
+        print("Note created successfully.")
 
-    def view_notes(self): # View notes method
+    def view_notes(self):
+        '''View all notes.'''
         if not self.notes:
             print("No notes available.")
         else:
             for note in self.notes:
-                print(f"Title: {note.title}\nCreated on: {note.datetime}\nContent: {note.content}")
+                print(f"Title: {note.title}\nCreated on: {note.created_at}\nContent: {note.content}\n")
     
-    def edit_note(self): # Edit note method
+    def edit_note(self):
+        '''Edit an existing note.'''
         if not self.notes: # Check if there are notes to edit
             print("No notes available to edit.")
             return
@@ -63,9 +77,12 @@ class NoteManager:
             choice_note.content = new_content
         
         print("Note updated successfully.") # Confirm note update
-        print(f"Title: {choice_note.title}\nCreated on: {choice_note.datetime}\nContent: {choice_note.content}")
+        choice_note.updated_at = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+        print(f"Title: {choice_note.title}\nCreated on: {choice_note.created_at}\nLast edited: {choice_note.updated_at}\nContent: {choice_note.content}")
 
-    def delete_note(self): # Delete note method
+
+    def delete_note(self):
+        '''Delete an existing note.'''
         if not self.notes: # Check if there are notes to delete
             print("No notes available to delete.")
             return
@@ -97,8 +114,8 @@ while True:
 
     option = input("Choose an option (1-5): ")
     if option == '1':
-        title_note = input("Enter note title: ").strip()
-        content_note = input("Enter note content: ").strip()
+        title_note = input("Enter note title: ")
+        content_note = input("Enter note content: ")
         manager.create_note(title_note, content_note)
     elif option == '2':
         manager.view_notes()
