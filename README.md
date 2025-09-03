@@ -15,15 +15,15 @@ This project was created to practice object-oriented programming (OOP) concepts 
 
 When you start the program, you'll see a menu with options:  
 
-    Create Note
+    1. Create Note
 
-    View Notes
+    2. View Notes
 
-    Edit Note
+    3. Edit Note
 
-    Delete Note
+    4. Delete Note
 
-    Exit
+    5. Exit
 
 Notes are stored in memory during the session. Each note has:  
 
@@ -32,8 +32,6 @@ Notes are stored in memory during the session. Each note has:
 - **Created on** → A timestamp when the note was added  
 
 ## Example
-
-    ```bash
 
         Welcome to the Notes App
 
@@ -55,8 +53,6 @@ Notes are stored in memory during the session. Each note has:
         Enter note content: Eggs, Milk, Bread
         Note created successfully.
 
-    ```
-
 ## Requirements
 
 - Python 3.7+  
@@ -67,16 +63,16 @@ Notes are stored in memory during the session. Each note has:
 1. Clone this repository  
 2. Run the script in your terminal:  
 
-    python basic_notes.py
+        python basic_notes.py
 
 Future Improvements
 
-    Save notes to a file (JSON or text)
+- Save notes to a file (JSON or text)
 
-    Load notes when restarting the program
+- Load notes when restarting the program
 
-    Add search functionality
+- Add search functionality
 
-    Add categories or tags
+- Add categories or tags
 
 This project is a learning exercise. Feel free to use it, modify it, and expand it as you learn more about Python.
